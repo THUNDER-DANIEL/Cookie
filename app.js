@@ -7,7 +7,7 @@ let levelTools = [
       name: 'Super Mixer',
       price: 25.00,
       upPrice:3.00,
-      imgUrl: './tools/oven.png',
+      imgUrl: './tools/mixer.png',
       description: 'Start up Level'
     },
     {
@@ -15,15 +15,15 @@ let levelTools = [
       name: 'Grandma Power',
       price: 50.00,
       upPrice: 5.00,
-      imgUrl: './tools/oven.png',
+      imgUrl: './tools/granny.png',
       description: 'Grandma want$ to Help'
     },
     {
       id: '55',
       name: 'Commerical Kitchen',
-      price: 45.14,
+      price: 45.00,
       upPrice: 20.00,
-      imgUrl: './tools/oven.png',
+      imgUrl: './tools/kitchen.png',
       description: 'Company XYZ want$$ to help'
     },
     {
@@ -31,7 +31,7 @@ let levelTools = [
       name: 'Factory',
       price: 200.00,
       upPrice: 100.00,
-      imgUrl: './tools/oven.png',
+      imgUrl: './tools/factory.png',
       description: 'World cookie domination'
     }
   ]
@@ -66,8 +66,16 @@ function drawTools(){
     
         levelTools.forEach(levelUp =>{
 
-            // toolTemplate +=`<div class="col-sm-2 sidenav"><div> <p><a>${levelUp.imgUrl} 
-            //   ${levelUp.name}  ${levelUp.price}Level 25 2x(Super Mixer)</a></p> </div>`
+            toolTemplate +=`<div class="col sidenav">
+            <img src="${levelUp.imgUrl}" style="width:90px;height:90px;">
+            <ul>
+                <li><b>Name: ${levelUp.name}</b></li>
+                <li>Price:${levelUp.price}</li>
+            </ul>
+            <hr><BR>
+
+
+            </div>`
 
             }) 
             console.log("drawTools WOKRING")
