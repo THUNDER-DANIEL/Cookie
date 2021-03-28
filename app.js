@@ -1,6 +1,19 @@
 
 let clickCoin = 0
-let moreClick = 0
+let moreCoin = 0
+let clicks = 0
+
+
+
+let clickUpgrades = {
+    pickaxes: {
+      price: 100,
+      quantity: 0,
+      multiplier: 1
+    }
+  }
+
+
 
 
 let levelTools = [
@@ -57,45 +70,71 @@ let levelTools = [
     }
   ]
 
-// function robot(id){
-//     for (let i = 0; i < levelTools.length; i++) {
-//     let  box = levelTools[id];
-//     }
-//     console.log(box)
-// }
-// robot()
+
 
 
   function superMixer(id){
       if (clickCoin >= levelTools[0].price) {
           clickCoin = clickCoin - levelTools[0].price;
           levelTools[0].quantity = levelTools[0].quantity +1;
-          newMod = levelTools[0].modifier++;
-          moreClick = clickCoin + levelTools[0].modifier;
+          levelTools[0].modifier = levelTools[0].modifier +1;
           levelTools[0].price = levelTools[0].price * levelTools[0].modifier;
+          levelTools[0].quantity = levelTools[0].quantity + levelTools[0].modifier;
+        //   clickCoin = clickCoin * levelTools[0].modifier;
+          moreCoin = levelTools[0].modifier;
           document.getElementById("ClickerBuy").innerHTML  
           = levelTools[0].modifier +" "+ `ClickCoins Per click!`;
-        //   clickCoin = clickAcct;
+        console.log(clickCoin, "CC beore mod")
+        // clickCoin = clickCoin * levelTools[0].modifier
         } else{
             alert("Not Enough Click Coins!")
         }
-        console.log(levelTools[0].price, 'PRICE')
-        console.log(clickCoin, "CLICKER")
-        console.log(levelTools[0].modifier, "Modifier")
-        console.log(levelTools[0].quantity, "Q")
+
+        // clickCoin = clickCoin * levelTools[0].modifier
+
+        // console.log(levelTools[0].price, '****** PRICE')
+        // console.log(levelTools[0].modifier, "Modifier")
+        // console.log(levelTools[0].quantity, "Q")
+        // console.log(levelTools[0].price, "NEW PRICE")
+        console.log(clickCoin, "New CLICKER VAL ****************")
         update()
   }
 
 
+  // TODO buySuperMixer
+  // check if they have enough resource (clickCoin)+
+  //      reduce resoure by item price+
+  //      increase item price
+  //      increase item quantity
+  //      draw item updates
+  //       call update(   `)
+
+
+
+function upClick(){
+
+}
+
+
+
 function clickCookie(){
+    clicks = clickCoin + moreCoin;
     clickCoin++;
-    moreClick++;
+    moreCoin++;
+    newClickCoin =0;
+
+
+    // if(levelTools[0].modifier>=1){
+    //     newClickCoin = levelTools[0].modifier * levelTools[0].quantity;
+    //     clickCoin = newClickCoin
+    // }
+    // newClickCoin = newClickCoin ++;
     // TODO add modifiers of clicks
     //      filter tools to only !auto tools
     // itterate over that list to clickCoin the quantity * modifier
-    // console.log("click Cookie Function is working")
-    // document.getElementById('cCount').innerHTML = display_cCount
     update()
+    drawTools()
+    // console.log("click Cookie Function is working")
     // grandma()
     // cKitchen()
     // factory()
@@ -133,18 +172,11 @@ function grandma(){
 
 
 
-// TODO buySuperMixer
-// check if they have enough resource (clickCoin)
-//      reduce resoure by item price
-//      increase item price
-//      increase item quantity
-//      draw item updates
-//       call update(   `)
 
 
 
 function update(){
-    document.getElementById('cCount').innerText = moreClick;
+    document.getElementById('cCount').innerText = clickCoin;
     // document.getElementById('modifier1').innerText = levelTools[0].modifier;
     // levelTools[0].stopImg = levelTools[0].imgUrl;
         // superMixer()
