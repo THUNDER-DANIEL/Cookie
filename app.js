@@ -5,17 +5,6 @@ let clicks = 0
 
 
 
-// let clickUpgrades = {
-//     pickaxes: {
-//       price: 100,
-//       quantity: 0,
-//       multiplier: 1
-//     }
-//   }
-
-
-
-
 let levelTools = [
     {
       id: 0,
@@ -75,37 +64,50 @@ let levelTools = [
 
   function superMixer(id){
       if (clickCoin >= levelTools[id].price) {
-
-          clickCoin = clickCoin - levelTools[id].price;
-          levelTools[id].modifier = levelTools[id].modifier +1;
-          levelTools[id].price = levelTools[id].price * levelTools[id].modifier;
-          levelTools[id].quantity = levelTools[id].quantity +1;
-
-          upClick = clickCoin
-          moreCoin = levelTools[id].modifier;
-
-
-          document.getElementById("ClickerBuy").innerHTML  
-          = levelTools[id].modifier +" "+ `ClickCoins Per click!`;
-        console.log(clickCoin, "CC beore mod")
-        // clickCoin = clickCoin * levelTools[0].modifier
-        } else{
+            clickCoin = clickCoin - levelTools[id].price;
+            levelTools[id].modifier = levelTools[id].modifier +1;
+            levelTools[id].price = levelTools[id].price * levelTools[id].modifier;
+            levelTools[id].quantity = levelTools[id].quantity +1;
+            upClick = clickCoin
+            moreCoin = levelTools[id].modifier;
+            document.getElementById("ClickerBuy").innerHTML = levelTools[id].modifier +" "+ `ClickCoins Per click!`;
+        } else if(levelTools[id] === levelTools[1]){
+            autoclick()
+            document.getElementById("grannyMsg").innerHTML = "AUTO Grandma 1 Click Coin every 5 sec";
+        }else if(levelTools[id] === levelTools[2]){
+            cKitchen()
+            document.getElementById("cKitchenMsg").innerHTML = "COMMERICAL KITCHEN 1 time bonus 50 Click Coins & 1 Click Coin every 3 sec";
+        }else if(levelTools[id] === levelTools[3]){
+            autoclick()
+            document.getElementById("factoryMsg").innerHTML = "FACTORY 100 bonus Click COins & 1 Click Coin every 1 sec";
+        } 
+        else{
             alert("Not Enough Click Coins!")
-        } if(levelTools[id] === levelTools[1]){
-            startInterval()
-
         }
 
-        // clickCoin = clickCoin * levelTools[0].modifier
+
+        // let expr = levelTools[id];
+        // switch (expr) {
+        //   case levelTools[0]:
+        //     grandma();
+        //     break;
+        //   case levelTools[1]:
+        //     autoclick();
+        //     break;
+        //   case levelTools[2]:
+        //       cKitchen();
+        //     break;
+        //   case levelTools[3]:
+        //       factory();
+        //     break;
+        //   default:
+        //     alert(`Not enough Click Coins!`);
+        // }
+
+
 
         console.log(id)
-        // clickCookie()
         update()
-  }
-
-
-  function startInterval() {
-    collectionInterval = setInterval(collectAutoUpgrades, 3000);
   }
 
 
@@ -114,76 +116,60 @@ let levelTools = [
   //      reduce resoure by item price+
   //      increase item price+
   //      increase item quantity+
-  //      draw item updates
+  //      draw item updates+
   //       call update(   `)
-
-
-
-
 
 
 
 function clickCookie(id){
     clickCoin++;
-    // upClick = clickCoin * levelTools[id].quantity;
     moreCoin++;
     newClickCoin =0;
-
-
-    // if(levelTools[id].modifier>=1){
-    //     clickCoin = clickCoin * levelTools[id].modifier ;
-    // }
-    // newClickCoin = clickCoin;
     // TODO add modifiers of clicks
     //      filter tools to only !auto tools
     // itterate over that list to clickCoin the quantity * modifier
     update()
     drawTools()
-    // console.log("click Cookie Function is working")
-    // grandma()
-    // cKitchen()
-    // factory()
 }
 
 
-function atuoclick(){
+function autoclick(){
     // TODO autoClick (see clickCookie but change from !auto to auto)
 // set up interval to call 'autoClick'
-
-    setInterval(function(){ alert("Hello"); }, 3000);
-  
+    setInterval(function(){clickCookie(); }, 5000);
 }
-
 
 
 
  function mixer(){
-     clickCoin = clickCoin *2;
+     console.log('Mixer Func');
  }
 
 
-function grandma(){
-    if (clickCoin  >=  30) {
-        console.log("Grandma")
+function grandma(id){
+    if (clickCoin >= levelTools[id].price) {
+
+    }else {
+        alert(`Not enough Click Coins for Grandma Power!`)
     }
-   
+    document.getElementById("cKitchenMsg").innerHTML = "Grandma Power 1 Click Coin every 5 sec";
+
    }
 
 
 
    function cKitchen(){
-    if (clickCoin  >=  35) {
-        console.log("KITCHEN")
-    }
-   
+    setInterval(function(){clickCookie(); }, 3000);
+    clickCoin + 50;
+    console.log('kitchen FUNC')
    }
 
 
 
    function factory(){
-    if (clickCoin  >=  40) {
-        console.log("FACTORY")
-    }
+
+        console.log("FACTORY FUNC")
+
    
    }
 
@@ -193,12 +179,7 @@ function grandma(){
 
 function update(){
     document.getElementById('cCount').innerText = clickCoin;
-    // document.getElementById('modifier1').innerText = levelTools[0].modifier;
-    // levelTools[0].stopImg = levelTools[0].imgUrl;
-        // superMixer()
-    // console.log("UPDATE FUNC WORKING")
-    // document.getElementById('playerTwo').innerText = cpHealth
-    // document.getElementById('p1hits').innerText = p1count
+
 }
 
 
